@@ -7,7 +7,7 @@ description = [[我们需要亮茄，但是不希望在基地看到亮茄！
 
 这个mod的功能是使用便便桶施肥的草/浆果丛不会成为亮茄虚影的寄生目标]]
 
-version = "0.1.3"
+version = "0.1.4"
 api_version = 10
 
 --------更新网址
@@ -56,6 +56,16 @@ configuration_options = {
 		name = "veggie_uninfectable",
 		label = "保护农作物",
 		hover = "所有农作物都不会被亮茄寄生",
+		options = {
+			{ description = "off", data = false, hover = "Default" },
+			{ description = "on",  data = true },
+		},
+		default = false,
+	},
+	{
+		name = "sapling_moon_uninfectable",
+		label = "保护月亮树苗",
+		hover = "所有月亮树苗都不会被亮茄寄生",
 		options = {
 			{ description = "off", data = false, hover = "Default" },
 			{ description = "on",  data = true },

@@ -3,6 +3,7 @@ TUNING.GRASS_UNINFECTABLE = GetModConfigData("grass_uninfectable")
 TUNING.BERRY_UNINFECTABLE = GetModConfigData("berry_uninfectable")
 TUNING.JUICY_UNINFECTABLE = GetModConfigData("juicy_uninfectable")
 TUNING.VEGGIE_UNINFECTABLE = GetModConfigData("veggie_uninfectable")
+TUNING.SAPLING_MOON_UNINFECTABLE = GetModConfigData("sapling_moon_uninfectable")
 
 AddPrefabPostInit("fertilizer", function(inst)
 	inst.components.fertilizer.onappliedfn = function(inst, final_use, doer, target)
@@ -72,4 +73,9 @@ if TUNING.VEGGIE_UNINFECTABLE then
 			inst:RemoveTag("lunarplant_target")
 		end)
 	end
+end
+if TUNING.SAPLING_MOON_UNINFECTABLE then
+	AddPrefabPostInit("sapling_moon", function(inst)
+		inst:RemoveTag("lunarplant_target")
+	end)
 end
