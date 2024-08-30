@@ -72,4 +72,28 @@ configuration_options = {
 		},
 		default = false,
 	},
+	{
+		name = "let_pass_backpacker",
+		label = "放行背包客",
+		hover = "装备背包时不会被亮茄主动攻击",
+		options = {
+			{ description = "off", data = false, hover = "Default" },
+			{ description = "on",  data = true },
+		},
+		default = false,
+	},
+	{
+		name = "let_pass_equipment",
+		label = "安全通行装备",
+		hover = "装备安全通行装备时第一次不会被亮茄主动攻击",
+		options = {
+			{ description = "off", data = false, hover = "Default" },
+			{ description = "指南针", data = "compassbearer" },
+			{ description = "蘑菇帽", data = "spoiler" },
+			{ description = "海盗头巾", data = "master_crewman" },
+			{ description = "星象护目镜", data = "wagstaff_detector" },
+			{ description = "others", data = "lunarprayer", hover = "风幻龙的护身符(放入纯粹辉煌)等给角色添加lunarprayer标签的mod装备" },
+		},
+		default = false,
+	},
 }

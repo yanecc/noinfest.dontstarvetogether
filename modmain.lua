@@ -3,6 +3,8 @@ TUNING.GRASS_UNINFECTABLE = GetModConfigData("grass_uninfectable")
 TUNING.BERRY_UNINFECTABLE = GetModConfigData("berry_uninfectable")
 TUNING.JUICY_UNINFECTABLE = GetModConfigData("juicy_uninfectable")
 TUNING.VEGGIE_UNINFECTABLE = GetModConfigData("veggie_uninfectable")
+TUNING.LET_PASS_BACKPACKER = GetModConfigData("let_pass_backpacker")
+TUNING.LET_PASS_EQUIPMENT = GetModConfigData("let_pass_equipment")
 TUNING.SAPLING_MOON_UNINFECTABLE = GetModConfigData("sapling_moon_uninfectable")
 
 AddPrefabPostInit("fertilizer", function(inst)
@@ -77,5 +79,24 @@ end
 if TUNING.SAPLING_MOON_UNINFECTABLE then
 	AddPrefabPostInit("sapling_moon", function(inst)
 		inst:RemoveTag("lunarplant_target")
+	end)
+end
+if TUNING.LET_PASS_BACKPACKER then
+	AddPrefabPostInit("lunarthrall_plant", function(inst)
+		inst.components.combat.shouldaggrofn = function(inst, target)
+			local isLastAttacker = inst.components.combat.lastattacker == target
+			inst.components.combat.lastattacker = nil
+			return not target.components.inventory:EquipHasTag("backpack") or isLastAttacker
+		end
+	end)
+end
+if TUNING.LET_PASS_EQUIPMENT then
+	AddPrefabPostInit("lunarthrall_plant", function(inst)
+		inst.components.combat:AddNoAggroTag(TUNING.LET_PASS_EQUIPMENT)
+		inst.components.combat.onhitfn = function(inst, attacker)
+			if attacker ~= nil and attacker:HasTag(TUNING.LET_PASS_EQUIPMENT) then
+				inst.components.combat:RemoveNoAggroTag(TUNING.LET_PASS_EQUIPMENT)
+			end
+		end
 	end)
 end
